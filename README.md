@@ -79,7 +79,13 @@ npm run test
 
 ## プロジェクト構成
 
-詳細は[PROJECT_STRUCTURE_README.md](./PROJECT_STRUCTURE_README.md)を参照してください。
+詳細は[PROJECT_STRUCTURE_README.md](./doc/PROJECT_STRUCTURE_README.md)を参照してください。
+
+## 関連ドキュメント
+
+- [仕様書](./doc/仕様書.md) - プロジェクトの要件と機能仕様
+- [詳細設計書](./doc/詳細設計書.md) - システムアーキテクチャとUML図
+- [ディレクトリ構成](./doc/ディレクトリ構成.md) - プロジェクトの詳細なフォルダ構造
 
 ## ライセンス
 
