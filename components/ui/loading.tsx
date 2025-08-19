@@ -1,4 +1,4 @@
-import { clsx } from 'clsx'
+import { cn } from '@/lib/utils/cn'
 
 interface LoadingProps {
   size?: 'sm' | 'md' | 'lg'
@@ -14,9 +14,9 @@ export function Loading({ size = 'md', text, className }: LoadingProps) {
   }
 
   return (
-    <div className={clsx('flex flex-col items-center justify-center', className)}>
+    <div className={cn('flex flex-col items-center justify-center', className)}>
       <div
-        className={clsx(
+        className={cn(
           'animate-spin rounded-full border-2 border-gray-200 border-t-pokeca-primary',
           sizeClasses[size]
         )}

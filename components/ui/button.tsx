@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes, forwardRef } from 'react'
-import { clsx } from 'clsx'
+import { cn } from '@/lib/utils/cn'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost'
@@ -10,8 +10,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'primary', size = 'md', ...props }, ref) => {
     return (
       <button
-        className={clsx(
-          '基本ボタンスタイル inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+        className={cn(
+          'inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
           {
             // バリアント
             'bg-pokeca-primary text-white hover:bg-pokeca-primary/90': variant === 'primary',

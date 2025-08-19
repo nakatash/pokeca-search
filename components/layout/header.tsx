@@ -10,13 +10,13 @@ export function Header() {
   const isHomePage = pathname === '/'
 
   return (
-    <header className="bg-white border-b sticky top-0 z-50">
+    <header className="bg-pokeca-blue-deep text-white sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* ロゴ */}
           <Link href="/" className="flex items-center gap-2">
             <span className="text-2xl">🎴</span>
-            <span className="font-bold text-xl text-pokeca-primary">
+            <span className="font-bold text-xl text-pokeca-red-light">
               ポケカサーチ
             </span>
           </Link>
