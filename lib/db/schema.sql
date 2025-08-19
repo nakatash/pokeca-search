@@ -37,6 +37,8 @@ CREATE TABLE cards (
   rarity TEXT,
   image_url TEXT,
   release_date DATE,
+  circulation_supply INTEGER, -- 流通枚数
+  market_cap_jpy BIGINT, -- 時価総額（円）
   created_at TIMESTAMP DEFAULT now(),
   updated_at TIMESTAMP DEFAULT now(),
   UNIQUE(set_id, number)

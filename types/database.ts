@@ -36,6 +36,8 @@ export interface Card {
   rarity?: string
   imageUrl?: string
   releaseDate?: Date
+  circulationSupply?: number  // 流通枚数
+  marketCapJpy?: number      // 時価総額（円）
   createdAt: Date
   updatedAt: Date
 }
