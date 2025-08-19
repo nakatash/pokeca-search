@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { Noto_Sans_JP } from 'next/font/google'
+import { Header } from '@/components/layout/header'
+import { Footer } from '@/components/layout/footer'
 import './globals.css'
 
 const notoSansJP = Noto_Sans_JP({
@@ -30,7 +32,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja" className={notoSansJP.variable}>
-      <body className="bg-pokeca-light text-gray-900">{children}</body>
+      <body className="bg-pokeca-light text-gray-900 min-h-screen flex flex-col">
+        <Header />
+        <div className="flex-1">{children}</div>
+        <Footer />
+      </body>
     </html>
   )
 }
