@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-pokeca-bg-light">
       {/* ヘッダーセクション */}
       <section className="bg-pokeca-blue-deep text-white">
         <div className="container mx-auto px-4 py-8">

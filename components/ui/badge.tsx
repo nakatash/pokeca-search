@@ -1,23 +1,33 @@
 import { HTMLAttributes, forwardRef } from 'react'
-import { clsx } from 'clsx'
+import { cn } from '@/lib/utils/cn'
 
 export interface BadgeProps extends HTMLAttributes<HTMLDivElement> {
-  variant?: 'default' | 'secondary' | 'success' | 'warning' | 'danger'
+  variant?: 'default' | 'new' | 'hot' | 'trending' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
+  size?: 'sm' | 'md'
 }
 
 export const Badge = forwardRef<HTMLDivElement, BadgeProps>(
-  ({ className, variant = 'default', ...props }, ref) => {
+  ({ className, variant = 'default', size = 'sm', ...props }, ref) => {
     return (
       <div
         ref={ref}
-        className={clsx(
-          'inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold transition-colors',
+        className={cn(
+          'inline-flex items-center rounded-full font-semibold transition-colors',
           {
+            // サイズ
+            'px-2 py-0.5 text-xs': size === 'sm',
+            'px-3 py-1 text-sm': size === 'md',
+            
+            // バリアント - 公式サイト準拠カラー
             'bg-gray-100 text-gray-900': variant === 'default',
-            'bg-gray-200 text-gray-700': variant === 'secondary',
-            'bg-green-100 text-green-800': variant === 'success',
-            'bg-yellow-100 text-yellow-800': variant === 'warning',
-            'bg-red-100 text-red-800': variant === 'danger',
+            'bg-pokeca-yellow text-amber-900 shadow-sm': variant === 'new',
+            'bg-pokeca-red-primary text-white shadow-sm': variant === 'hot',
+            'bg-gradient-to-r from-pokeca-yellow to-pokeca-amber text-amber-900 shadow-sm animate-pulse': variant === 'trending',
+            'bg-pokeca-red-primary text-white': variant === 'primary',
+            'bg-pokeca-blue-primary text-white': variant === 'secondary',
+            'bg-green-500 text-white': variant === 'success',
+            'bg-pokeca-red-light text-white': variant === 'warning',
+            'bg-pokeca-red-dark text-white': variant === 'danger',
           },
           className
         )}

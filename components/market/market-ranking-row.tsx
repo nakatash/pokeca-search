@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { MarketCard } from '@/types/market'
 import { formatCurrency, formatNumber } from '@/lib/utils/format'
 import { PriceChangeBadge } from './price-change-badge'
+import { Badge } from '@/components/ui/badge'
 
 interface MarketRankingRowProps {
   card: MarketCard
@@ -16,8 +17,12 @@ export function MarketRankingRow({ card }: MarketRankingRowProps) {
     >
       <div className="grid grid-cols-12 gap-4 items-center">
         {/* ランク */}
-        <div className="col-span-1">
-          <span className="font-bold text-gray-600">{card.rank}</span>
+        <div className="col-span-1 flex items-center gap-2">
+          <span className={`font-bold ${card.rank <= 3 ? 'text-pokeca-red-primary' : 'text-gray-600'}`}>
+            {card.rank}
+          </span>
+          {card.rank === 1 && <Badge variant="trending" size="sm">🔥 HOT</Badge>}
+          {card.rank <= 3 && card.市場変動24h > 10 && <Badge variant="new" size="sm">NEW</Badge>}
         </div>
 
         {/* カード情報 */}
