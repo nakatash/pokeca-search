@@ -29,10 +29,12 @@ export function MarketRankingRow({ card }: MarketRankingRowProps) {
         <div className="col-span-4 flex items-center space-x-3">
           <div className="relative w-10 h-14 flex-shrink-0">
             <Image
-              src={card.imageUrl || '/placeholder-card.png'}
+              src={card.imageUrl || '/placeholder-card.svg'}
               alt={card.nameJp}
               fill
-              className="object-cover rounded"
+              className="object-cover rounded shadow-sm"
+              sizes="40px"
+              priority={card.rank <= 3}
             />
           </div>
           <div>
