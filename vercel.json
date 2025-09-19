@@ -1,0 +1,14 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/price-collector",
+      "schedule": "0 0 2 * * *",
+      "comment": "価格収集（毎日午前2時）"
+    }
+  ],
+  "functions": {
+    "app/api/cron/price-collector/route.ts": {
+      "maxDuration": 300
+    }
+  }
+}
