@@ -2,7 +2,7 @@
 // 実行: npx tsx scripts/test-ingestion.ts
 
 import { CardIngestionService } from '@/lib/services/ingestion/card-ingestion.service'
-import { ShopClientFactory, ShopType } from '@/lib/services/shop-clients'
+import { ShopClientFactory, ShopType, StockStatus } from '@/lib/services/shop-clients'
 import { testConnection } from '@/lib/db/client'
 
 async function testIngestion() {
@@ -102,7 +102,7 @@ async function testPriceUpdate() {
       rarity: 'R',
       price: 1000 + Math.floor(Math.random() * 500), // ランダムな価格変動
       stock: 10,
-      stockStatus: 'in_stock' as const,
+      stockStatus: StockStatus.IN_STOCK,
       shopName: 'テストショップ',
       shopUrl: 'https://test.example.com/card/001',
       imageUrl: 'https://example.com/image.png',

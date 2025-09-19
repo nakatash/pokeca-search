@@ -178,7 +178,7 @@ export class CardIngestionService {
     }
 
     // ショップごとに処理
-    for (const [shopName, cards] of cardsByShop) {
+    for (const [shopName, cards] of Array.from(cardsByShop.entries())) {
       try {
         // ショップ情報を取得/作成
         const shopId = await this.upsertShop(

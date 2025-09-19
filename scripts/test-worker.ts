@@ -2,6 +2,7 @@
 // 実行: npx tsx scripts/test-worker.ts
 
 import { PriceCollectorWorker } from '@/workers/price-collector'
+import { ShopType } from '@/lib/services/shop-clients'
 import { testConnection } from '@/lib/db/client'
 
 async function testWorker() {
@@ -22,7 +23,7 @@ async function testWorker() {
     maxCardsPerRun: 10, // 最大10件
     shopConfigs: [
       {
-        shopType: 'pokemontcg' as const,
+        shopType: ShopType.POKEMON_TCG,
         enabled: true,
         queries: ['Pikachu', 'Charizard'], // 2つのクエリのみ
         maxPages: 1 // 1ページのみ
@@ -80,7 +81,7 @@ async function testWorkerError() {
     maxCardsPerRun: 5,
     shopConfigs: [
       {
-        shopType: 'pokemontcg' as const,
+        shopType: ShopType.POKEMON_TCG,
         enabled: true,
         queries: ['InvalidQuery#$%'], // 特殊文字を含むクエリ
         maxPages: 1

@@ -1,7 +1,7 @@
 名称,カテゴリ,URL,API
+カードラッシュ,公式・専門店,https://www.cardrush-pokemon.jp,-
 晴れる屋2（ハレツー）,公式・専門店,https://www.hareruya2.com,-
 カードラボ,公式・専門店,https://www.c-labo-online.jp,-
-カードラッシュ,公式・専門店,https://www.cardrush-pokemon.jp,-
 遊々亭,公式・専門店,https://yuyu-tei.jp/top/poc,-
 BIGMAGIC（bigweb）,公式・専門店,https://www.bigweb.co.jp/ja/products/pokemon,-
 ドラゴンスター,公式・専門店,https://dorasuta.jp/pokemon-card,-

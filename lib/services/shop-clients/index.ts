@@ -2,6 +2,9 @@
 
 export { BaseShopClient } from './base-client'
 export { PokemonTCGClient } from './pokemontcg-client'
+export { CardRushClient } from './cardrush-client'
+export { Hareruya2Client } from './hareruya2-client'
+export { CardLaboClient } from './cardlabo-client'
 
 // 型のエクスポート
 export type {
@@ -22,14 +25,19 @@ export {
 
 // ショップクライアントファクトリー
 import { PokemonTCGClient } from './pokemontcg-client'
+import { CardRushClient } from './cardrush-client'
+import { Hareruya2Client } from './hareruya2-client'
+import { CardLaboClient } from './cardlabo-client'
 import { IShopClient } from '@/types/shop-client'
 
 export enum ShopType {
   POKEMON_TCG = 'pokemontcg',
+  CARDRUSH = 'cardrush',
+  HARERUYA2 = 'hareruya2',
+  CARDLABO = 'cardlabo',
   // 今後追加予定
   // SURUGAYA = 'surugaya',
   // RAKUMA = 'rakuma',
-  // HARERUYA = 'hareruya',
 }
 
 export class ShopClientFactory {
@@ -47,6 +55,15 @@ export class ShopClientFactory {
     switch (type) {
       case ShopType.POKEMON_TCG:
         client = new PokemonTCGClient(process.env.POKEMON_TCG_API_KEY)
+        break
+      case ShopType.CARDRUSH:
+        client = new CardRushClient()
+        break
+      case ShopType.HARERUYA2:
+        client = new Hareruya2Client()
+        break
+      case ShopType.CARDLABO:
+        client = new CardLaboClient()
         break
       default:
         throw new Error(`Unsupported shop type: ${type}`)

@@ -28,7 +28,7 @@ export async function GET(request: NextRequest) {
     }
 
     // 複数ショップから並行検索
-    const shopTypes = [ShopType.POKEMON_TCG] // 今後他のショップも追加予定
+    const shopTypes = [ShopType.POKEMON_TCG, ShopType.CARDRUSH, ShopType.HARERUYA2, ShopType.CARDLABO]
     const searchPromises = shopTypes.map(async (shopType) => {
       try {
         const client = ShopClientFactory.getClient(shopType)

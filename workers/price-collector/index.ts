@@ -37,6 +37,24 @@ export class PriceCollectorWorker {
           enabled: true,
           queries: ['Charizard', 'Pikachu', 'ex', 'vstar', 'vmax', 'Mew', 'Rayquaza', 'Lucario'],
           maxPages: 5 // より多くのページを取得
+        },
+        {
+          shopType: ShopType.CARDRUSH,
+          enabled: true,
+          queries: ['リザードン', 'ピカチュウ', 'ex', 'vstar', 'vmax'],
+          maxPages: 3 // カードラッシュは3ページまで
+        },
+        {
+          shopType: ShopType.HARERUYA2,
+          enabled: true,
+          queries: ['リザードン', 'ピカチュウ', 'ex', 'vstar', 'vmax'],
+          maxPages: 3 // 晴れる屋2は3ページまで
+        },
+        {
+          shopType: ShopType.CARDLABO,
+          enabled: true,
+          queries: ['リザードン', 'ピカチュウ', 'ex', 'vstar', 'vmax'],
+          maxPages: 3 // カードラボは3ページまで
         }
       ],
       ...config
@@ -230,16 +248,51 @@ export function getPriceCollectorWorker(config?: Partial<WorkerConfig>): PriceCo
 
 // 環境変数から設定を読み込む
 export function getConfigFromEnv(): Partial<WorkerConfig> {
+  const shopConfigs: WorkerConfig['shopConfigs'] = []
+
+  // Pokemon TCG API設定
+  if (process.env.POKEMON_TCG_ENABLED !== 'false') {
+    shopConfigs.push({
+      shopType: ShopType.POKEMON_TCG,
+      enabled: true,
+      queries: (process.env.POKEMON_TCG_QUERIES || 'Charizard,Pikachu,ex,vstar,vmax,Mew,Rayquaza,Lucario').split(','),
+      maxPages: parseInt(process.env.POKEMON_TCG_MAX_PAGES || '5')
+    })
+  }
+
+  // カードラッシュ設定
+  if (process.env.CARDRUSH_ENABLED !== 'false') {
+    shopConfigs.push({
+      shopType: ShopType.CARDRUSH,
+      enabled: true,
+      queries: (process.env.CARDRUSH_QUERIES || 'リザードン,ピカチュウ,ex,vstar,vmax').split(','),
+      maxPages: parseInt(process.env.CARDRUSH_MAX_PAGES || '3')
+    })
+  }
+
+  // 晴れる屋2設定
+  if (process.env.HARERUYA2_ENABLED !== 'false') {
+    shopConfigs.push({
+      shopType: ShopType.HARERUYA2,
+      enabled: true,
+      queries: (process.env.HARERUYA2_QUERIES || 'リザードン,ピカチュウ,ex,vstar,vmax').split(','),
+      maxPages: parseInt(process.env.HARERUYA2_MAX_PAGES || '3')
+    })
+  }
+
+  // カードラボ設定
+  if (process.env.CARDLABO_ENABLED !== 'false') {
+    shopConfigs.push({
+      shopType: ShopType.CARDLABO,
+      enabled: true,
+      queries: (process.env.CARDLABO_QUERIES || 'リザードン,ピカチュウ,ex,vstar,vmax').split(','),
+      maxPages: parseInt(process.env.CARDLABO_MAX_PAGES || '3')
+    })
+  }
+
   return {
     intervalMinutes: parseInt(process.env.PRICE_COLLECTOR_INTERVAL || '1440'),
     maxCardsPerRun: parseInt(process.env.PRICE_COLLECTOR_MAX_CARDS || '2000'),
-    shopConfigs: [
-      {
-        shopType: ShopType.POKEMON_TCG,
-        enabled: process.env.POKEMON_TCG_ENABLED !== 'false',
-        queries: (process.env.POKEMON_TCG_QUERIES || 'Charizard,Pikachu,ex,vstar,vmax,Mew,Rayquaza,Lucario').split(','),
-        maxPages: parseInt(process.env.POKEMON_TCG_MAX_PAGES || '5')
-      }
-    ]
+    shopConfigs
   }
 }
